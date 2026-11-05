@@ -15,7 +15,7 @@ function Comparison() {
     ? <span style={{ display: 'inline-flex', width: 26, height: 26, borderRadius: '50%', background: hero ? 'var(--avance-green)' : 'var(--sage-tint)', alignItems: 'center', justifyContent: 'center' }}><Icon.check s={15} c={hero ? 'var(--paper)' : 'var(--avance-green)'} /></span>
     : <span style={{ display: 'inline-flex', color: 'var(--latte)' }}><Icon.x s={18} /></span>;
   return (
-    <section style={{ background: 'var(--cream)', padding: mobile ? '72px 20px' : '64px 56px' }}>
+    <section id="comparison" style={{ background: 'var(--cream)', padding: mobile ? '72px 20px' : '64px 56px' }}>
       <div style={{ maxWidth: 920, margin: '0 auto' }}>
         <SectionHead kicker="Why AVANCE" title="One cup, fewer compromises" />
         <div style={{ marginTop: mobile ? 44 : 64, background: 'var(--paper)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--border)', boxShadow: 'var(--shadow-sm)', overflow: 'hidden' }}>
@@ -125,6 +125,7 @@ function NutritionFacts() {
   return (
     <section id="nutrition" style={{ position: 'relative', overflow: 'hidden', background: 'var(--grad-cocoa)', color: 'var(--cream)', padding: mobile ? '72px 26px' : '64px 56px' }}>
       <div style={{ position: 'absolute', inset: 0, background: 'var(--glow-top)', pointerEvents: 'none' }} />
+      <SectionMedia slot="nutrition" />
       <div style={{ position: 'relative', maxWidth: 1080, margin: '0 auto', display: 'grid', gridTemplateColumns: mobile ? '1fr' : '0.96fr 1.04fr', gap: mobile ? 44 : 56, alignItems: 'start' }}>
         <div style={{ background: 'var(--paper)', color: 'var(--espresso)', borderRadius: 'var(--radius-md)', padding: '26px 28px', boxShadow: 'var(--shadow-lg)' }}>
           <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 26, borderBottom: '6px solid var(--espresso)', paddingBottom: 6 }}>Supplement Facts</div>
@@ -138,7 +139,6 @@ function NutritionFacts() {
         </div>
         <div>
           <Eyebrow color="var(--sage)">What's inside</Eyebrow>
-          <SectionMedia slot="nutrition" />
           <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 500, fontSize: mobile ? 32 : 42, color: 'var(--paper)', margin: '16px 0 8px', lineHeight: 1.08 }}>Clean ingredients. Nothing to hide.</h2>
           <p style={{ fontFamily: 'var(--font-body)', fontSize: 16, lineHeight: 1.7, color: 'var(--on-dark-2)', margin: '0 0 32px', maxWidth: 480 }}>No gums, no artificial sweeteners, no synthetic fillers. If it's in the pouch, it's there to do a job.</p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>

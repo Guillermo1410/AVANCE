@@ -61,3 +61,29 @@ Validación Babel de los nueve archivos JSX y git diff --check: correctas. Compr
 
 ### Pendientes previos que siguen vigentes
 El checkout no procesa pagos; el carrito conserva la inconsistencia de precios documentada arriba. Las imágenes impresas, nutrición, certificaciones y reseñas conceptuales requieren revisión antes de uso comercial.
+
+
+## Actualización v3 — imágenes a todo el ancho y portada con producto
+
+- Franjas sin radios: ancho del viewport sincronizado con clientWidth para no sumar el ancho de la barra de scroll. Se mantienen alturas cortas y recorte object-fit:cover; reemplazar las fotos en AVANCE_MEDIA cuando estén disponibles.
+- Portada reestructurada: franja de cacao, envase visible primero en celular (165–215 px de alto), titular, texto y CTA. Escritorio mantiene producto junto al mensaje.
+- Barra horizontal de acceso debajo del encabezado: Home, Ingredients, Nutrition, Shop, Science, Compare, FAQ. Desplazable en celular con controles de al menos 44 px. Son enlaces internos, no nuevas páginas ni categorías aisladas todavía.
+- Encabezado medido con ResizeObserver para compensar su altura en la portada y en el acceso a compra. Fondo claro y contraste consistente.
+- No se retiró contenido: pendiente decidir qué bloques se consolidan en Home y cuáles se separan. Continúa Shop now flotante.
+
+Verificación v3: compilación JSX en comprobación de componentes, renderizado simulado a 320/390/768/1440 px, rutas de imagen, orden de compra antes de reseñas y función de Shop now correctos; git diff --check correcto. No se pudo comprobar layout real ni iPhone en este entorno. Esta versión se entrega para revisión; no está publicada automáticamente.
+
+
+## v4 — categorías independientes dentro del sitio estático
+
+Navegación por hash (#home, #product, #shop, #science, #about, #faq), compatible con GitHub Pages sin configurar un servidor. Se monta solo la vista elegida. Se puede compartir el enlace de una categoría y usar Atrás/Adelante; el carrito permanece en el estado de la aplicación mientras se cambia de vista.
+
+- Home: portada, pilares, compra, preparación y nutrición en desplegable; enlaces para profundizar.
+- The product: pilares, nutrición completa y preparación.
+- Shop: compra, condiciones de envío/garantías y suscripción.
+- Science: ciencia y comparación.
+- Meet AVANCE: historia, fundador, sustentabilidad y reseñas conceptuales.
+- FAQ: preguntas frecuentes.
+- Newsletter y pie de página comunes; botón Shop now lleva a Shop desde cualquier categoría.
+
+Verificación: los nueve JSX compilan y las seis vistas se renderizan en una comprobación de componentes; navegación activa, imágenes locales y presencia del CTA correctas. Home no monta ciencia ni reseñas. git diff --check correcto. Sin comprobación visual en navegador ni pruebas físicas de iPhone. No se ha publicado: subir los cinco elementos del ZIP a la raíz del repositorio y confirmar los cambios. No subir solamente el ZIP.

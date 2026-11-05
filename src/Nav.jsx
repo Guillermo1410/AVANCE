@@ -10,7 +10,7 @@ function AnnouncementBar() {
   );
 }
 
-function Nav({ cartCount, onCart, onMenuChange }) {
+function Nav({ cartCount, onCart, onMenuChange, currentPage, onNavigate }) {
   const mobile = useIsMobile(860);
   const [scrolled, setScrolled] = React.useState(false);
   const [menu, setMenu] = React.useState(false);
@@ -19,29 +19,29 @@ function Nav({ cartCount, onCart, onMenuChange }) {
     const fn = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', fn); return () => window.removeEventListener('scroll', fn);
   }, []);
-  const links = [['Science','science'], ['Reviews','reviews'], ['Sourcing','sourcing'], ['FAQ','faq']];
-  const go = (id) => { const el = document.getElementById(id); if (el) window.scrollTo({ top: el.offsetTop - 60, behavior: 'smooth' }); setMenu(false); };
-  const scrollBuy = () => { const b = document.getElementById('buy'); if (b) window.scrollTo({ top: b.offsetTop - 70, behavior: 'smooth' }); setMenu(false); };
+  const links = [['Home','home'], ['The product','product'], ['Shop','shop'], ['Science','science'], ['Meet AVANCE','about'], ['FAQ','faq']];
+  const go = (id) => { setMenu(false); onNavigate(id); };
+  const scrollBuy = () => go('shop');
   return (
-    <header style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50 }}>
+    <header className="avance-header" style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50 }}>
       <AnnouncementBar />
       <div style={{ transition: 'all var(--dur) var(--ease-out)',
-        background: scrolled || menu ? 'rgba(251,247,239,0.9)' : 'transparent', backdropFilter: scrolled || menu ? 'blur(14px)' : 'none',
+        background: 'var(--paper)', backdropFilter: scrolled || menu ? 'blur(14px)' : 'none',
         borderBottom: scrolled || menu ? '1px solid var(--border)' : '1px solid transparent' }}>
       <div style={{ maxWidth: 1400, margin: '0 auto', padding: mobile ? '15px 22px' : '18px 56px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <Logo id="nav-logo" color={scrolled || menu || mobile ? 'var(--espresso)' : 'var(--paper)'} size={mobile ? 26 : 31} layout="inline" />
-        {!mobile && <nav style={{ display: 'flex', gap: 34 }}>
-          {links.map(([l, id]) => <a key={l} href={'#' + id} onClick={(e) => { e.preventDefault(); go(id); }} style={{ fontFamily: 'var(--font-body)', fontSize: 14, fontWeight: 500, color: scrolled ? 'var(--espresso)' : 'var(--paper)', opacity: 0.9 }}>{l}</a>)}
-        </nav>}
+        <Logo id="nav-logo" color="var(--espresso)" size={mobile ? 26 : 31} layout="inline" />
         <div style={{ display: 'flex', alignItems: 'center', gap: mobile ? 12 : 16 }}>
           {!mobile && <Button variant="dark" size="sm" onClick={scrollBuy}>Shop</Button>}
-          <button onClick={onCart} style={{ position: 'relative', background: 'none', border: 'none', cursor: 'pointer', color: scrolled || menu || mobile ? 'var(--espresso)' : 'var(--paper)', display: 'flex' }}>
+          <button onClick={onCart} style={{ position: 'relative', background: 'none', border: 'none', cursor: 'pointer', color: 'var(--espresso)', display: 'flex' }}>
             <Icon.cart s={22} />
             {cartCount > 0 && <span style={{ position: 'absolute', top: -7, right: -8, background: 'var(--avance-green)', color: 'var(--paper)', fontFamily: 'var(--font-body)', fontSize: 10, fontWeight: 700, width: 17, height: 17, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{cartCount}</span>}
           </button>
-          {mobile && <button onClick={() => setMenu(!menu)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: scrolled || menu ? 'var(--espresso)' : 'var(--paper)', display: 'flex' }}>{menu ? <Icon.x s={24} /> : <Icon.menu s={24} />}</button>}
+          {mobile && <button onClick={() => setMenu(!menu)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--espresso)', display: 'flex' }}>{menu ? <Icon.x s={24} /> : <Icon.menu s={24} />}</button>}
         </div>
       </div>
+      <nav className="section-index" aria-label="Explore AVANCE sections">
+        {links.map(([label, id]) => <a key={id} href={'#' + id} aria-current={currentPage === id ? 'page' : undefined} className={id === 'shop' ? 'section-index-shop' : ''} onClick={e => {e.preventDefault(); go(id);}}>{label}</a>)}
+      </nav>
       {mobile && menu && (
         <nav style={{ padding: '8px 22px 22px', display: 'flex', flexDirection: 'column', gap: 4 }}>
           {links.map(([l, id]) => <a key={l} href={'#' + id} onClick={(e) => { e.preventDefault(); go(id); }} style={{ fontFamily: 'var(--font-display)', fontSize: 20, fontWeight: 500, color: 'var(--espresso)', padding: '10px 0', borderBottom: '1px solid var(--border)' }}>{l}</a>)}

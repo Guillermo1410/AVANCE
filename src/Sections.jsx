@@ -8,7 +8,7 @@ function Pillars() {
     { kind: 'postbiotic', name: 'Postbiotics', body: 'Fermentation-derived postbiotics that nourish the gut lining — calm digestion you can actually feel.' },
   ];
   return (
-    <section style={{ background: 'var(--paper)', padding: mobile ? '72px 26px' : '64px 56px' }}>
+    <section id="composition" style={{ background: 'var(--paper)', padding: mobile ? '72px 26px' : '64px 56px' }}>
       <div style={{ maxWidth: 1080, margin: '0 auto' }}>
         <SectionHead kicker="Three functional pillars" title="Formulated, not faked" sub="Every scoop earns its place. No fillers, no fairy dust — just three ingredients doing real, measurable work." />
         <div style={{ display: 'grid', gridTemplateColumns: mobile ? '1fr' : 'repeat(3,1fr)', gap: mobile ? 40 : 36, marginTop: mobile ? 52 : 52 }}>

@@ -32,49 +32,80 @@ function CartDrawer({ open, items, onClose, total }) {
   );
 }
 
+const AVANCE_PAGES = {
+  home: {title: 'Home'},
+  product: {title: 'The product', sub: 'Ingredients, preparation and nutrition.'},
+  shop: {title: 'Shop AVANCE', sub: 'Choose your pouch and your routine.'},
+  science: {title: 'The science', sub: 'A closer look at the formulation and the alternatives.'},
+  about: {title: 'Meet AVANCE', sub: 'Our story, our approach and our ingredients.'},
+  faq: {title: 'Frequently asked questions', sub: 'Practical answers about your daily ritual.'}
+};
+function pageFromHash() {
+  const key = window.location.hash.slice(1);
+  const aliases = {buy:'shop', composition:'product', nutrition:'product', comparison:'science', founder:'about', sourcing:'about', story:'about', reviews:'about'};
+  return AVANCE_PAGES[key] ? key : (aliases[key] || 'home');
+}
 function LandingApp() {
+  const [page, setPage] = React.useState(pageFromHash);
   const [cart, setCart] = React.useState([]);
   const [open, setOpen] = React.useState(false);
   const [menuOpen, setMenuOpen] = React.useState(false);
-  const shop = () => {
-    const buy = document.getElementById("buy");
-    if (!buy) return;
-    const header = document.querySelector("header");
-    const top = buy.getBoundingClientRect().top + window.scrollY - (header ? header.getBoundingClientRect().height : 100) - 12;
-    window.scrollTo({top, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"});
-    buy.querySelector("h2")?.focus({preventScroll: true});
-  };
   React.useEffect(() => {
-    const secs = Array.from(document.querySelectorAll('section')).slice(1); // skip hero
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
-    secs.forEach(s => { s.classList.add('reveal'); io.observe(s); });
-    return () => io.disconnect();
+    const sync = () => {
+      document.documentElement.style.setProperty('--viewport-width', document.documentElement.clientWidth + 'px');
+      const header = document.querySelector('header');
+      if (header) document.documentElement.style.setProperty('--header-height', header.getBoundingClientRect().height + 'px');
+    };
+    sync();
+    const observer = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(sync) : null;
+    const header = document.querySelector('header');
+    if (header && observer) observer.observe(header);
+    window.addEventListener('resize', sync);
+    document.fonts?.ready.then(sync);
+    return () => { observer?.disconnect(); window.removeEventListener('resize', sync); };
   }, []);
+
+  const navigate = (next) => {
+    if (!AVANCE_PAGES[next]) return;
+    setPage(next);
+    if (window.location.hash !== '#' + next) window.location.hash = next;
+    else window.scrollTo({top: 0, behavior: 'auto'});
+  };
+  const shop = () => navigate('shop');
+  React.useEffect(() => {
+    const change = () => setPage(pageFromHash());
+    window.addEventListener('hashchange', change);
+    return () => window.removeEventListener('hashchange', change);
+  }, []);
+  React.useEffect(() => {
+    window.scrollTo({top: 0, behavior: 'auto'});
+    document.getElementById('page-content')?.focus({preventScroll: true});
+  }, [page]);
   const count = cart.reduce((s, i) => s + i.qty, 0);
   const total = cart.reduce((s, i) => s + i.qty * 48, 0);
   const add = (qty) => { setCart([...cart, { qty }]); setOpen(true); };
   return (
     <div style={{ background: 'var(--paper)' }}>
-      <Nav cartCount={count} onCart={() => setOpen(true)} onMenuChange={setMenuOpen} />
-      <Hero onShop={shop} />
-      <Pillars />
-      <Buy onAdd={add} />
-      <SubscriptionFlow />
-      <Story />
-      <ScienceDeep />
-      <TrustStrip />
-      <Comparison />
-      <HowItWorks />
-      <Founder />
-      <NutritionFacts />
-      <Sustainability />
-      <FAQ />
-      <Reviews />
+      <Nav cartCount={count} onCart={() => setOpen(true)} onMenuChange={setMenuOpen} currentPage={page} onNavigate={navigate} />
+      <main id="page-content" tabIndex={-1} className={page === 'home' ? 'page-home' : 'category-page'}>
+        {page !== 'home' && <div className="category-title"><h1>{AVANCE_PAGES[page].title}</h1><p>{AVANCE_PAGES[page].sub}</p></div>}
+        {page === 'home' && <>
+          <Hero onShop={shop} />
+          <Pillars />
+          <Buy onAdd={add} />
+          <HowItWorks />
+          <details className="home-disclosure"><summary>Ingredients &amp; nutrition facts</summary><NutritionFacts /></details>
+          <div className="home-next"><p>Want to know more about your cup?</p><a href="#product">Explore the product ↗</a><a href="#science">Read the science ↗</a></div>
+        </>}
+        {page === 'product' && <><Pillars /><NutritionFacts /><HowItWorks /></>}
+        {page === 'shop' && <><Buy onAdd={add} /><TrustStrip /><SubscriptionFlow /></>}
+        {page === 'science' && <><ScienceDeep /><Comparison /></>}
+        {page === 'about' && <><Story /><Founder /><Sustainability /><Reviews /></>}
+        {page === 'faq' && <FAQ />}
+      </main>
       <Subscribe />
       <Footer />
-      {!open && !menuOpen && <a className="floating-shop" href="#buy" onClick={e => {e.preventDefault(); shop();}} aria-label="Shop now — go to Functional Cacao purchase options">Shop now <span aria-hidden="true">↗</span></a>}
+      {!open && !menuOpen && <a className="floating-shop" href="#shop" onClick={e => {e.preventDefault(); shop();}} aria-label="Shop now — go to Functional Cacao purchase options">Shop now <span aria-hidden="true">↗</span></a>}
       <CartDrawer open={open} items={cart} total={total} onClose={() => setOpen(false)} />
     </div>
   );
