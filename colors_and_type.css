@@ -235,3 +235,69 @@ p, .body {
 
 a { color: var(--accent); text-decoration: none; }
 a:hover { color: var(--green-mid); }
+
+
+/* AVANCE: mobile corrections */
+#nav-logo { transform: none !important; }
+
+@media (max-width: 860px) {
+  header > div:last-child {
+    background: var(--paper) !important;
+  }
+  header button { color: var(--espresso) !important; }
+  header button:has(svg) {
+    min-width: 44px; min-height: 44px;
+    align-items: center; justify-content: center;
+  }
+  header nav { max-height: 65dvh; overflow-y: auto; }
+}
+
+@media (max-width: 760px) {
+  #root > div > section:first-of-type > div:last-child {
+    padding: 150px 20px 36px !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 24px !important;
+  }
+  section:first-of-type .av-fu:first-child {
+    order: 1 !important;
+    padding: 0 !important;
+    min-width: 0;
+  }
+  section:first-of-type .av-fu:last-child {
+    order: 2 !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    min-width: 0;
+  }
+  section:first-of-type .av-fu:last-child > div,
+  section:first-of-type .av-float {
+    width: 100%; min-width: 0;
+  }
+  section:first-of-type img {
+    width: min(100%, 300px) !important;
+    height: auto !important;
+    max-width: 100% !important;
+    max-height: 360px;
+    object-fit: contain;
+    margin: 0 auto;
+  }
+  section:first-of-type h1 {
+    font-size: clamp(40px, 11vw, 58px) !important;
+    line-height: 1.04 !important;
+  }
+  section:first-of-type p { font-size: 16px !important; }
+  section:first-of-type button {
+    white-space: normal !important;
+    max-width: 100%;
+    padding: 14px 20px !important;
+    font-size: 16px !important;
+  }
+  #hero-kicker {
+    font-size: 10px !important;
+    letter-spacing: .1em !important;
+  }
+  input, select, textarea {
+    font-size: 16px !important;
+    min-width: 0; max-width: 100%;
+  }
+}
