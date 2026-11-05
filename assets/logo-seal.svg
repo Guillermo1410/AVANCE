@@ -1,0 +1,9 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AVANCE seal">
+  <defs><path id="sb" d="M20,100 A80,80 0 0 0 180,100"></path></defs>
+  <circle cx="100" cy="100" r="95" stroke="currentColor" stroke-width="1.4"></circle>
+  <circle cx="100" cy="100" r="87" stroke="currentColor" stroke-width="1" opacity="0.7"></circle>
+  <g transform="translate(81 48)"><path d="M20 3.5C15 9 15 15 20 19.5C25 15 25 9 20 3.5Z M20 36.5C15 31 15 25 20 20.5C25 25 25 31 20 36.5Z M3.5 20C9 15 15 15 19.5 20C15 25 9 25 3.5 20Z M36.5 20C31 15 25 15 20.5 20C25 25 31 25 36.5 20Z" fill="currentColor"></path></g>
+  <text x="100" y="116" text-anchor="middle" font-family="Jost, sans-serif" font-size="25" font-weight="400" letter-spacing="3" fill="currentColor">AVANCE</text>
+  <line x1="86" y1="129" x2="114" y2="129" stroke="currentColor" stroke-width="1.2"></line>
+  <text font-family="Hanken Grotesk, sans-serif" font-size="8.5" font-weight="500" letter-spacing="2.2" fill="currentColor"><textPath href="#sb" startOffset="50%" text-anchor="middle">SCIENCE · NATURE · WELLNESS</textPath></text>
+</svg>
