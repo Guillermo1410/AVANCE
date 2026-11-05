@@ -1,0 +1,371 @@
+/* ============================================================
+   AVANCE — Functional Nutrition
+   Foundations: Color + Type
+   Warm earth · cacao · kraft · natural green
+   ============================================================ */
+
+/* ---- Fonts (loaded from Google Fonts — see README for substitution notes) ----
+   Display : Jost            (geometric, wide-trackable — echoes the AVANCE wordmark)
+   Body/UI : Hanken Grotesk  (clean humanist grotesque)
+   Editorial accent : Cormorant Garamond (elegant serif, used sparingly)        */
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Hanken+Grotesk:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap');
+/* Lab/science mono — IBM Plex Mono — for batch codes, lab micro-data, ingredient ratios */
+
+:root {
+  /* ---------- NEUTRALS · warm earth ramp ---------- */
+  --cacao-black: #1E140C;   /* darkest — pouch top / "soft black" ink   */
+  --espresso:    #2E2017;   /* primary dark ink on light surfaces       */
+  --cocoa:       #4A2E1A;   /* rich brand brown                         */
+  --coffee:      #6B4A30;   /* secondary brown / wood                   */
+  --mocha:       #8A6F52;   /* muted brown — captions on light          */
+  --taupe:       #A68C6E;   /* warm mid background                      */
+  --latte:       #C3B097;   /* soft warm border / divider on dark       */
+  --kraft:       #DCCBB0;   /* kraft paper beige                        */
+  --sand:        #ECE1CF;   /* warm secondary surface                   */
+  --cream:       #F6EFE3;   /* primary off-white surface                */
+  --paper:       #FBF7EF;   /* lightest paper                           */
+  --white:       #FFFFFF;
+
+  /* ---------- ACCENT · natural green ---------- */
+  --forest:       #2B3A1A;  /* deepest green — packaging band           */
+  --avance-green: #4C6B32;  /* PRIMARY accent — "Avance Green"          */
+  --green-mid:    #6E8B45;  /* hover / lively green                     */
+  --sage:         #9CAE7C;  /* muted sage — quiet accents               */
+  --sage-tint:    #E6EADA;  /* faint green wash surface                 */
+
+  /* ---------- SKU COLORWAYS · the functional line ----------
+     Each blend carries one earthy accent + a pale wash for surfaces.
+     All stay inside the warm/natural family — never bright.          */
+  --cacao-accent:  #4C6B32;  --cacao-wash:  #E6EADA;  /* Functional Cacao  — forest green */
+  --matcha-accent: #7C8A4A;  --matcha-wash: #ECEDDA;  /* Functional Matcha — olive sage   */
+  --golden-accent: #B5852F;  --golden-wash: #F2E7CE;  /* Functional Golden — turmeric ochre */
+  --chai-accent:   #A0522D;  --chai-wash:   #F0DECF;  /* Functional Chai   — spiced terracotta */
+
+  /* ---------- WARM DARK ATMOSPHERE ----------
+     Milk-chocolate / cocoa gradients for dark sections — warm & inviting,
+     never near-black. Layered with an ambient amber glow.              */
+  --milk-choc:    #6B4A30;  /* milk-chocolate highlight                 */
+  --caramel-glow: rgba(214,158,92,0.20);  /* ambient warm light         */
+  --grad-hero:    radial-gradient(118% 100% at 76% 24%, #6c4729 0%, #4f3220 40%, #3c2516 72%, #301e12 100%); /* @kind color */
+  --grad-cocoa:   radial-gradient(125% 130% at 82% 12%, #5d3b24 0%, #482c1a 46%, #3b2415 100%); /* @kind color */
+  --grad-cocoa-soft: linear-gradient(165deg, #53341f 0%, #3d2616 100%); /* @kind color */
+  --grad-footer:  linear-gradient(172deg, #321f13 0%, #261810 100%); /* @kind color */
+  --glow-top:     radial-gradient(58% 46% at 50% -4%, var(--caramel-glow), transparent 72%);
+
+  /* ---------- SEMANTIC ---------- */
+  --bg:          var(--paper);
+  --surface:     var(--cream);
+  --surface-2:   var(--sand);
+  --surface-dark:var(--espresso);
+  --fg:          var(--espresso);     /* primary text on light          */
+  --fg-2:        var(--coffee);       /* secondary text                 */
+  --fg-3:        var(--mocha);        /* tertiary / captions            */
+  --on-dark:     var(--cream);        /* text on dark surfaces          */
+  --on-dark-2:   var(--latte);
+  --accent:      var(--avance-green);
+  --accent-ink:  var(--forest);
+  --border:      color-mix(in oklch, var(--coffee) 22%, transparent);
+  --border-dark: color-mix(in oklch, var(--cream) 24%, transparent);
+
+  /* status (kept earthy, never pharma-bright) */
+  --positive: #4C6B32;
+  --warning:  #B07A2E;
+  --danger:   #9B4A2F;
+
+  /* ---------- TYPE FAMILIES ---------- */
+  --font-display: 'Jost', system-ui, sans-serif;
+  --font-body:    'Hanken Grotesk', system-ui, sans-serif;
+  --font-serif:   'Cormorant Garamond', Georgia, serif;
+  --font-mono:    'IBM Plex Mono', ui-monospace, monospace;  /* lab micro-data */
+
+  /* ---------- TYPE SCALE (1.25 major-third-ish, fluid where useful) ---------- */
+  --text-xs:   0.75rem;   /* 12 */
+  --text-sm:   0.875rem;  /* 14 */
+  --text-base: 1rem;      /* 16 */
+  --text-md:   1.125rem;  /* 18 */
+  --text-lg:   1.375rem;  /* 22 */
+  --text-xl:   1.75rem;   /* 28 */
+  --text-2xl:  2.25rem;   /* 36 */
+  --text-3xl:  3rem;      /* 48 */
+  --text-4xl:  4rem;      /* 64 */
+  --text-5xl:  5.5rem;    /* 88 */
+
+  /* tracking — AVANCE leans wide & airy */
+  --tracking-tight:  -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide:   0.08em;
+  --tracking-wider:  0.18em;   /* eyebrows / SCIENCE · NATURE · WELLNESS */
+  --tracking-widest: 0.32em;   /* wordmark / micro-labels               */
+
+  /* ---------- SPACING (4px base) ---------- */
+  --space-1: 4px;   --space-2: 8px;   --space-3: 12px;  --space-4: 16px;
+  --space-5: 24px;  --space-6: 32px;  --space-7: 48px;  --space-8: 64px;
+  --space-9: 96px;  --space-10: 128px;
+
+  /* ---------- RADII (soft, organic — never sharp/clinical) ---------- */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 36px;
+  --radius-pill: 999px;
+
+  /* ---------- ELEVATION (warm, low, diffuse — soft daylight) ---------- */
+  --shadow-xs: 0 1px 2px rgba(46,32,23,0.06);
+  --shadow-sm: 0 2px 8px rgba(46,32,23,0.07);
+  --shadow-md: 0 8px 24px rgba(46,32,23,0.10);
+  --shadow-lg: 0 18px 48px rgba(46,32,23,0.14);
+  --shadow-xl: 0 32px 80px rgba(30,20,12,0.20);
+
+  /* ---------- MOTION ---------- */
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1); /* @kind other */
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1); /* @kind other */
+  --dur-fast: 140ms; /* @kind other */
+  --dur: 240ms; /* @kind other */
+  --dur-slow: 480ms; /* @kind other */
+}
+
+/* ============================================================
+   SEMANTIC ELEMENT STYLES — apply to a page that links this file
+   ============================================================ */
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Eyebrow / kicker — the SCIENCE · NATURE · WELLNESS treatment */
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* Display headline — wide geometric caps, à la the AVANCE wordmark */
+h1, .h1 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--text-4xl);
+  line-height: 1.02;
+  letter-spacing: var(--tracking-wide);
+  color: var(--fg);
+  text-wrap: balance;
+}
+.display {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--text-5xl);
+  line-height: 0.98;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+h2, .h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--text-2xl);
+  line-height: 1.1;
+  letter-spacing: var(--tracking-tight);
+  color: var(--fg);
+  text-wrap: balance;
+}
+h3, .h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--text-xl);
+  line-height: 1.2;
+  color: var(--fg);
+}
+h4, .h4 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--text-md);
+  line-height: 1.3;
+  color: var(--fg);
+}
+
+p, .body {
+  font-size: var(--text-base);
+  line-height: 1.65;
+  color: var(--fg-2);
+  text-wrap: pretty;
+}
+.lead {
+  font-size: var(--text-lg);
+  line-height: 1.5;
+  color: var(--fg-2);
+}
+.small, small {
+  font-size: var(--text-sm);
+  color: var(--fg-3);
+}
+.caption {
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--fg-3);
+}
+
+/* Lab micro-data — batch codes, ratios, scientific labels */
+.lab {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--fg-3);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Editorial serif — pull quotes & wellness storytelling */
+.serif {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-style: italic;
+  font-size: var(--text-2xl);
+  line-height: 1.3;
+  color: var(--cocoa);
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--green-mid); }
+
+
+/* Mobile control sizing */
+#nav-logo { transform: none !important; }
+@media (max-width: 860px) {
+  header button { color: var(--espresso) !important; }
+  header button:has(svg) { min-width: 44px; min-height: 44px; align-items: center; justify-content: center; }
+  header nav:not(.section-index) { max-height: 65dvh; overflow-y: auto; }
+}
+@media (max-width: 760px) {
+  input, select, textarea { font-size: 16px !important; min-width: 0; max-width: 100%; }
+}
+
+/* Editorial image slots: replace paths in AVANCE_MEDIA, components.jsx. */
+.section-media { margin: 0 0 26px; width: 100%; height: 112px; overflow: hidden; border-radius: 12px; background: var(--sand); }
+.section-media img { display: block; width: 100% !important; height: 100% !important; max-height: none !important; max-width: 100% !important; object-fit: cover; }
+.section-media--hero { width: min(100%, 440px); height: 92px; border: 1px solid var(--border-dark); }
+.floating-shop { position: fixed; right: max(20px, env(safe-area-inset-right)); bottom: calc(20px + env(safe-area-inset-bottom)); z-index: 70; display: inline-flex; align-items: center; justify-content: center; gap: 16px; min-height: 48px; padding: 12px 21px; border-radius: 999px; background: var(--forest); color: var(--paper); border: 1px solid rgba(246,239,227,.3); font-family: var(--font-body); font-size: 14px; font-weight: 600; box-shadow: 0 6px 24px rgba(30,20,12,.2); }
+.floating-shop:hover { background: var(--avance-green); color: var(--paper); }
+.floating-shop:focus-visible { outline: 3px solid var(--sage); outline-offset: 4px; }
+#root > div { padding-bottom: 82px; }
+#buy { scroll-margin-top: 140px; }
+@media(max-width: 760px) {
+  .section-media { height: 100px; margin-bottom: 22px; }
+  .section-media--hero { height: 72px; max-width: 100%; }
+  .floating-shop { right: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); padding: 11px 18px; gap: 12px; }
+}
+
+/* v3 — edge-to-edge photography, compact product-first hero, section index */
+:root { --header-height: 186px; }
+.section-media { width: var(--viewport-width, 100%); max-width: none; margin-left: calc((100% - var(--viewport-width, 100%)) / 2); margin-right: 0; border: 0; border-radius: 0; height: clamp(92px, 12vw, 156px); }
+.avance-hero { position: relative; background: var(--grad-hero); padding-top: var(--header-height); overflow: hidden; }
+.avance-hero > .section-media { width: 100%; margin: 0; height: 84px; }
+.hero-layout { max-width: 1240px; margin: 0 auto; padding: 36px 56px 56px; display: grid; grid-template-columns: minmax(0,1.05fr) minmax(0,.95fr); align-items: center; gap: 42px; }
+.hero-copy { grid-column: 1; grid-row: 1; min-width: 0; }
+.hero-product { grid-column: 2; grid-row: 1; display: flex; justify-content: center; min-width: 0; }
+.hero-product img { display: block; width: 100%; max-width: 420px; height: min(510px, 62vh); object-fit: contain; filter: drop-shadow(0 24px 30px rgba(20,10,0,.35)); }
+#hero-kicker { color: var(--sage); font: 11px var(--font-mono); letter-spacing: .13em; text-transform: uppercase; }
+.hero-copy h1 { color: var(--paper); font-size: clamp(48px, 5.3vw, 76px); font-weight: 300; line-height: 1.03; letter-spacing: -.025em; margin: 18px 0; }
+.hero-copy h1 em { font-family: var(--font-serif); font-weight: 500; }
+.hero-copy p { color: var(--cream); font-size: 17px; line-height: 1.55; max-width: 500px; margin: 0 0 22px; }
+.hero-actions { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; }
+.hero-actions button { min-height: 48px; max-width: 100%; white-space: normal !important; }
+.hero-actions a { color: var(--paper); font-size: 14px; padding: 12px 0; }
+.hero-highlights { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 20px; }
+.hero-highlights span { color: var(--latte); font: 10px var(--font-mono); letter-spacing: .04em; text-transform: uppercase; }
+.section-index { display: flex; align-items: center; gap: 8px; overflow-x: auto; padding: 9px max(16px, calc((100% - 1288px) / 2)); background: var(--cream); border-top: 1px solid var(--border); scrollbar-width: thin; }
+.section-index a { display: inline-flex; align-items: center; justify-content: center; min-height: 40px; flex: 0 0 auto; padding: 8px 16px; border: 1px solid var(--border); border-radius: 999px; color: var(--espresso); font: 500 13px var(--font-body); }
+.section-index a:hover, .section-index a:focus-visible { background: var(--sage-tint); }
+.section-index .section-index-shop { color: var(--paper); background: var(--avance-green); border-color: var(--avance-green); }
+.section-index .section-index-shop:hover { background: var(--forest); }
+section[id] { scroll-margin-top: calc(var(--header-height) + 12px); }
+@media (max-width: 760px) {
+  .section-media { height: 88px; margin-bottom: 22px; }
+  .avance-hero > .section-media { height: 58px; margin: 0; }
+  .hero-layout { display: flex; flex-direction: column; gap: 10px; padding: 14px 22px 34px; }
+  .hero-product { width: 100%; }
+  .hero-product img { width: min(68%, 230px); height: clamp(165px, 24svh, 215px); max-width: 100%; }
+  .hero-copy { width: 100%; }
+  .hero-copy h1 { font-size: clamp(36px, 10vw, 48px); margin: 12px 0; }
+  .hero-copy p { font-size: 15px; line-height: 1.5; margin-bottom: 16px; }
+  .hero-actions { gap: 6px 16px; }
+  .hero-actions button { padding: 13px 22px !important; font-size: 15px !important; }
+  .hero-highlights { margin-top: 12px; }
+  .section-index a { min-height: 44px; padding: 8px 14px; }
+}
+
+/* v4 — six distinct views; only the selected category is mounted. */
+.category-page { padding-top: var(--header-height); }
+.category-title { padding: 34px 24px 28px; text-align: center; background: var(--cream); }
+.category-title h1 { font-size: clamp(30px, 5vw, 48px); margin: 0 0 10px; letter-spacing: -.02em; }
+.category-title p { font-size: 15px; margin: 0; }
+.section-index a[aria-current="page"] { outline: 2px solid var(--avance-green); outline-offset: -2px; background: var(--sage-tint); }
+.section-index .section-index-shop[aria-current="page"] { background: var(--forest); }
+.home-disclosure { background: var(--cream); }
+.home-disclosure > summary { padding: 22px 24px; cursor: pointer; min-height: 56px; font-family: var(--font-display); font-size: 21px; color: var(--espresso); border-block: 1px solid var(--border); }
+.home-disclosure > summary:focus-visible { outline: 3px solid var(--avance-green); outline-offset: -3px; }
+.home-next { padding: 30px 24px; text-align: center; background: var(--paper); }
+.home-next p { margin-top: 0; }
+.home-next a { display: inline-flex; padding: 12px 16px; min-height: 44px; font-size: 14px; text-decoration: underline; text-underline-offset: 4px; }
+#page-content:focus { outline: none; }
+
+/* v5 — integrated hero and compact ingredient / preparation modules. */
+.hero-layout { display: grid; grid-template-columns: minmax(0,1.05fr) minmax(0,.95fr); grid-template-rows: auto auto auto auto; column-gap: 36px; row-gap: 14px; }
+.hero-copy { grid-column: 1; grid-row: 1; }
+.hero-product { grid-column: 2; grid-row: 1 / 5; align-self: center; }
+.hero-description { grid-column: 1; grid-row: 2; color: var(--cream); font-size: 16px; line-height: 1.55; margin: 0; }
+.hero-actions { grid-column: 1; grid-row: 3; }
+.hero-highlights { grid-column: 1; grid-row: 4; margin-top: 0; }
+.compact-section { padding: 36px 26px !important; }
+.compact-section h2 { font-size: clamp(26px, 3.4vw, 36px) !important; }
+.compact-section .section-media { height: 76px; margin-bottom: 20px; }
+.pillars-compact { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 22px; margin-top: 26px; }
+.pillar-compact { display: grid; grid-template-columns: 44px minmax(0,1fr); column-gap: 12px; row-gap: 5px; align-content: start; }
+.pillar-icon { grid-row: 1 / 3; }
+.pillar-compact h3 { font: 500 18px var(--font-display); margin: 0; align-self: center; }
+.pillar-compact p { grid-column: 2; font-size: 13px; line-height: 1.5; margin: 0; }
+.ritual-section { background: var(--cream); }
+.ritual-steps { padding: 0; margin: 24px 0 0; display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 18px; list-style: none; }
+.ritual-steps li { display: flex; gap: 12px; align-items: flex-start; padding: 14px 0; border-top: 1px solid var(--border); }
+.ritual-number { flex: 0 0 30px; height: 30px; display: grid; place-items: center; border-radius: 50%; background: var(--sage-tint); color: var(--forest); font: 12px var(--font-mono); }
+.ritual-steps h3 { margin: 0 0 3px; font: 500 17px var(--font-display); }
+.ritual-steps p { margin: 0; font-size: 13px; line-height: 1.45; }
+.product-carousel { position: relative; min-width: 0; }
+.carousel-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; border-radius: 20px; scrollbar-width: none; aspect-ratio: 1; max-height: 480px; background: #21150e; }
+.carousel-track::-webkit-scrollbar { display: none; }
+.carousel-slide { flex: 0 0 100%; min-width: 0; scroll-snap-align: start; scroll-snap-stop: always; }
+.carousel-slide img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.carousel-track:focus-visible { outline: 3px solid var(--avance-green); outline-offset: 3px; }
+.carousel-arrow { position: absolute; top: calc(50% - 46px); width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--border); background: rgba(251,247,239,.94); color: var(--espresso); font-size: 28px; cursor: pointer; display: grid; place-items: center; }
+.carousel-prev { left: 10px; } .carousel-next { right: 10px; }
+.carousel-controls { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 44px; color: var(--coffee); font: 12px var(--font-body); }
+.carousel-controls > span:first-child { flex: 1; }
+.carousel-dots { display: flex; }
+.carousel-dots button { padding: 0; width: 44px; height: 44px; display: grid; place-items: center; border: 0; background: none; cursor: pointer; }
+.carousel-dots span { width: 7px; height: 7px; border-radius: 50%; background: var(--latte); }
+.carousel-dots button[aria-pressed="true"] span { background: var(--avance-green); }
+@media(max-width: 760px) {
+  .hero-layout { display: grid; grid-template-columns: minmax(0,1.1fr) minmax(0,.9fr); column-gap: 10px; row-gap: 16px; padding: 20px 20px 28px; }
+  .hero-copy { width: auto; grid-row: 1; align-self: center; }
+  .hero-copy h1 { font-size: clamp(28px, 7.4vw, 38px); line-height: 1.07; margin: 12px 0 0; }
+  #hero-kicker { font-size: 8px; line-height: 1.6; letter-spacing: .08em; }
+  .hero-product { grid-row: 1; grid-column: 2; width: 100%; }
+  .hero-product img { width: 100%; height: clamp(170px, 25svh, 215px); }
+  .hero-description { grid-row: 2; grid-column: 1 / -1; font-size: 14px; line-height: 1.5; }
+  .hero-actions { grid-row: 3; grid-column: 1 / -1; gap: 8px 14px; }
+  .hero-highlights { grid-row: 4; grid-column: 1 / -1; }
+  .pillars-compact { grid-template-columns: 1fr; gap: 14px; margin-top: 22px; }
+  .pillar-compact { padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+  .pillar-compact:last-child { border-bottom: 0; padding-bottom: 0; }
+  .ritual-steps { grid-template-columns: 1fr; gap: 0; margin-top: 18px; }
+  .ritual-steps li { padding: 12px 0; }
+  .carousel-track { max-height: 360px; }
+}
