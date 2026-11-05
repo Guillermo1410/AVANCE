@@ -10,10 +10,11 @@ function AnnouncementBar() {
   );
 }
 
-function Nav({ cartCount, onCart }) {
+function Nav({ cartCount, onCart, onMenuChange }) {
   const mobile = useIsMobile(860);
   const [scrolled, setScrolled] = React.useState(false);
   const [menu, setMenu] = React.useState(false);
+  React.useEffect(() => { if (onMenuChange) onMenuChange(menu); }, [menu, onMenuChange]);
   React.useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', fn); return () => window.removeEventListener('scroll', fn);

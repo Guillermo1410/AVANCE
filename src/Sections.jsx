@@ -39,7 +39,7 @@ function Story() {
       <div style={{ position: 'relative', maxWidth: 1180, margin: '0 auto' }}>
         <div style={{ display: 'grid', gridTemplateColumns: mobile ? '1fr' : '0.92fr 1.08fr', gap: mobile ? 48 : 72, alignItems: 'center' }}>
           <div style={{ borderRadius: 'var(--radius-xl)', overflow: 'hidden', boxShadow: 'var(--shadow-xl)', border: '1px solid rgba(246,239,227,0.12)', order: mobile ? 2 : 1, maxHeight: mobile ? 'none' : 420 }}>
-            <img src="./assets/r-cup.jpg" alt="Warm functional cacao, prepared" style={{ width: '100%', height: '100%', display: 'block', objectFit: 'cover', objectPosition: 'center 55%', filter: 'brightness(1.06) saturate(1.03)' }} />
+            <img src={AVANCE_MEDIA.story.src} alt={AVANCE_MEDIA.story.alt} style={{ width: '100%', height: '100%', display: 'block', objectFit: 'cover', objectPosition: 'center 55%', filter: 'brightness(1.06) saturate(1.03)' }} />
           </div>
           <div style={{ order: mobile ? 1 : 2 }}>
             <Eyebrow color="var(--sage)">The science, made warm</Eyebrow>

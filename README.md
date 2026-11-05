@@ -39,3 +39,25 @@ Tipografías: Jost (display), Hanken Grotesk (body), Cormorant Garamond itálica
 - Supplement Facts: Calories/Carbs/Fiber/Sugars/Fat pendientes de validación.
 - r-pouch-front.jpg / r-pouch-back.jpg pueden mostrar datos antiguos impresos.
 - Reviews, certificaciones y citas: validar antes de publicar. Checkout sin integración.
+
+
+## Actualización visual v2 — 5 noviembre 2026
+
+- Franja horizontal de ingredientes sobre el título principal, 72 px de alto en celular y 92 px en escritorio.
+- Encabezados con espacios para fotografía en ingredientes, ciencia, comparación, ritual, suscripción, sustentabilidad, preguntas y reseñas; también en nutrición y newsletter. Historia y fundador conservan sus bloques fotográficos.
+- Se reutilizan imágenes existentes como referencias temporales; no son fotografías nuevas ni evidencia de los ingredientes finales.
+- Compra después de los tres pilares; reseñas después de FAQ, cerca del cierre.
+- Enlace fijo Shop now abajo a la derecha, con área táctil y margen para la zona segura del teléfono. Lleva a #buy y compensa la altura del encabezado. Se oculta con menú/carrito abiertos.
+- Se conservan los textos, los colores y los precios del prototipo.
+
+### Cambiar fotografías
+En src/components.jsx, AVANCE_MEDIA centraliza las rutas, los textos alternativos y el encuadre (position) de cada sección. Usar rutas relativas ./assets/nombre.jpg y agregar los archivos a assets. Los slots story y founder controlan las imágenes grandes existentes. La galería de compra continúa usando r-pouch-front.jpg y r-pouch-back.jpg en src/Buy.jsx.
+
+### Publicar esta versión
+Descomprimir el ZIP. Subir el contenido de avance-web (index.html, colors_and_type.css, README.md, src y assets) a la raíz del repositorio, conservando los directorios src y assets. Confirmar con Commit changes. No subir solo el ZIP. Pages ya usa main / (root).
+
+### Verificación
+Validación Babel de los nueve archivos JSX y git diff --check: correctas. Comprobación de la estructura de componentes con anchos simulados de 320, 390, 768 y 1440 px: imágenes existentes, compra antes de reseñas y lógica del enlace Shop now correctas. Esto no sustituye una comprobación de layout: no se pudo realizar la prueba visual en navegador ni en un iPhone real. Publicación pendiente por permisos de GitHub.
+
+### Pendientes previos que siguen vigentes
+El checkout no procesa pagos; el carrito conserva la inconsistencia de precios documentada arriba. Las imágenes impresas, nutrición, certificaciones y reseñas conceptuales requieren revisión antes de uso comercial.

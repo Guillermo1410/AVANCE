@@ -3,7 +3,7 @@
 function Hero({ onShop }) {
   const mobile = useIsMobile();
   return (
-    <section style={{ position: 'relative', minHeight: mobile ? 'auto' : '92vh', overflow: 'hidden',
+    <section className="avance-hero" style={{ position: 'relative', minHeight: mobile ? 'auto' : '92vh', overflow: 'hidden',
       background: 'var(--grad-hero)' }}>
       {/* ambient warm light — top-right glow + soft caramel reflection */}
       <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(50% 55% at 80% 22%, rgba(231,176,110,0.30), transparent 64%)', pointerEvents: 'none' }} />
@@ -22,6 +22,7 @@ function Hero({ onShop }) {
 
         {/* copy */}
         <div className="av-fu" style={{ order: mobile ? 2 : 1, padding: mobile ? '36px 0 52px' : 0, textAlign: 'left' }}>
+          <SectionMedia slot="hero" hero />
           <div style={{ marginBottom: 26 }}>
             <span id="hero-kicker" style={{ fontFamily: 'var(--font-mono)', fontSize: 12.5, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--sage)' }}>Science · Nature · Wellness</span>
           </div>

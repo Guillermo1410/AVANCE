@@ -35,20 +35,15 @@ function CartDrawer({ open, items, onClose, total }) {
 function LandingApp() {
   const [cart, setCart] = React.useState([]);
   const [open, setOpen] = React.useState(false);
-  React.useEffect(() => {
-    const align = () => {
-      const logo = document.getElementById('nav-logo');
-      const kicker = document.getElementById('hero-kicker');
-      if (!logo || !kicker) return;
-      logo.style.transform = '';
-      const lr = logo.getBoundingClientRect(), kr = kicker.getBoundingClientRect();
-      const shift = (kr.left + kr.width / 2) - (lr.left + lr.width / 2);
-      logo.style.transform = `translateX(${shift}px)`;
-    };
-    align();
-    window.addEventListener('resize', align);
-    return () => window.removeEventListener('resize', align);
-  }, []);
+  const [menuOpen, setMenuOpen] = React.useState(false);
+  const shop = () => {
+    const buy = document.getElementById("buy");
+    if (!buy) return;
+    const header = document.querySelector("header");
+    const top = buy.getBoundingClientRect().top + window.scrollY - (header ? header.getBoundingClientRect().height : 100) - 12;
+    window.scrollTo({top, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"});
+    buy.querySelector("h2")?.focus({preventScroll: true});
+  };
   React.useEffect(() => {
     const secs = Array.from(document.querySelectorAll('section')).slice(1); // skip hero
     const io = new IntersectionObserver((entries) => {
@@ -62,23 +57,24 @@ function LandingApp() {
   const add = (qty) => { setCart([...cart, { qty }]); setOpen(true); };
   return (
     <div style={{ background: 'var(--paper)' }}>
-      <Nav cartCount={count} onCart={() => setOpen(true)} />
-      <Hero onShop={() => { const b = document.getElementById('buy'); if (b) window.scrollTo({ top: b.offsetTop - 70, behavior: 'smooth' }); }} />
+      <Nav cartCount={count} onCart={() => setOpen(true)} onMenuChange={setMenuOpen} />
+      <Hero onShop={shop} />
       <Pillars />
+      <Buy onAdd={add} />
+      <SubscriptionFlow />
       <Story />
       <ScienceDeep />
       <TrustStrip />
       <Comparison />
       <HowItWorks />
-      <Reviews />
       <Founder />
       <NutritionFacts />
-      <Buy onAdd={add} />
-      <SubscriptionFlow />
       <Sustainability />
       <FAQ />
+      <Reviews />
       <Subscribe />
       <Footer />
+      {!open && !menuOpen && <a className="floating-shop" href="#buy" onClick={e => {e.preventDefault(); shop();}} aria-label="Shop now — go to Functional Cacao purchase options">Shop now <span aria-hidden="true">↗</span></a>}
       <CartDrawer open={open} items={cart} total={total} onClose={() => setOpen(false)} />
     </div>
   );

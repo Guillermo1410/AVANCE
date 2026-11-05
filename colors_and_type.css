@@ -273,7 +273,7 @@ a:hover { color: var(--green-mid); }
   section:first-of-type .av-float {
     width: 100%; min-width: 0;
   }
-  section:first-of-type img {
+  section:first-of-type img[src$="hero-pouch-v6.png"] {
     width: min(100%, 300px) !important;
     height: auto !important;
     max-width: 100% !important;
@@ -300,4 +300,19 @@ a:hover { color: var(--green-mid); }
     font-size: 16px !important;
     min-width: 0; max-width: 100%;
   }
+}
+
+/* Editorial image slots: replace paths in AVANCE_MEDIA, components.jsx. */
+.section-media { margin: 0 0 26px; width: 100%; height: 112px; overflow: hidden; border-radius: 12px; background: var(--sand); }
+.section-media img { display: block; width: 100% !important; height: 100% !important; max-height: none !important; max-width: 100% !important; object-fit: cover; }
+.section-media--hero { width: min(100%, 440px); height: 92px; border: 1px solid var(--border-dark); }
+.floating-shop { position: fixed; right: max(20px, env(safe-area-inset-right)); bottom: calc(20px + env(safe-area-inset-bottom)); z-index: 70; display: inline-flex; align-items: center; justify-content: center; gap: 16px; min-height: 48px; padding: 12px 21px; border-radius: 999px; background: var(--forest); color: var(--paper); border: 1px solid rgba(246,239,227,.3); font-family: var(--font-body); font-size: 14px; font-weight: 600; box-shadow: 0 6px 24px rgba(30,20,12,.2); }
+.floating-shop:hover { background: var(--avance-green); color: var(--paper); }
+.floating-shop:focus-visible { outline: 3px solid var(--sage); outline-offset: 4px; }
+#root > div { padding-bottom: 82px; }
+#buy { scroll-margin-top: 140px; }
+@media(max-width: 760px) {
+  .section-media { height: 100px; margin-bottom: 22px; }
+  .section-media--hero { height: 72px; max-width: 100%; }
+  .floating-shop { right: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); padding: 11px 18px; gap: 12px; }
 }

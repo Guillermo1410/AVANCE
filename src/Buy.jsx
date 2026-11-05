@@ -45,7 +45,7 @@ function Buy({ onAdd }) {
               <span style={{ width: 7, height: 7, borderRadius: '50%', background: 'var(--avance-green)' }} />In stock
             </span>
           </div>
-          <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 500, fontSize: mobile ? 32 : 30, color: 'var(--espresso)', margin: '0 0 5px', letterSpacing: '-0.01em' }}>Functional Cacao</h2>
+          <h2 tabIndex={-1} style={{ fontFamily: 'var(--font-display)', fontWeight: 500, fontSize: mobile ? 32 : 30, color: 'var(--espresso)', margin: '0 0 5px', letterSpacing: '-0.01em' }}>Functional Cacao</h2>
           <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, color: 'var(--coffee)', margin: '0 0 6px' }}>400 g · 13 servings · Hot drink powder</p>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, margin: '0 0 16px' }}>
             <span style={{ fontFamily: 'var(--font-display)', fontSize: 26, fontWeight: 500, color: 'var(--espresso)' }}>${price.toFixed(2).replace('.00','')}</span>

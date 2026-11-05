@@ -1,3 +1,28 @@
+/* Replace these image paths when the final photography is ready. */
+const AVANCE_MEDIA = {
+  hero: {src: './assets/r-cup.jpg', position: '55% 66%', alt: 'Cacao powder and ingredients arranged on a warm wooden table'},
+  'Three functional pillars': {src: './assets/r-cup.jpg', position: '70% 55%', alt: 'Cacao and plant ingredients'},
+  'The science, made simple': {src: './assets/r-cup.jpg', position: '85% 45%', alt: 'Plant ingredients in bowls'},
+  'Why AVANCE': {src: './assets/r-cup.jpg', position: '50% 70%', alt: 'A close detail of cacao powder'},
+  'The ritual': {src: './assets/r-cup.jpg', position: '20% 30%', alt: 'A warm cup of cacao'},
+  'Subscribe & save': {src: './assets/r-story.png', position: '50% 50%', alt: 'AVANCE product scene'},
+  'Sourcing & sustainability': {src: './assets/r-cup.jpg', position: '75% 70%', alt: 'Ingredients and cacao on a wooden table'},
+  'Questions': {src: './assets/r-cup.jpg', position: '20% 30%', alt: 'The daily cacao ritual'},
+  'Pre-launch': {src: './assets/r-cup.jpg', position: '20% 30%', alt: 'A warm cacao cup'},
+  nutrition: {src: './assets/r-cup.jpg', position: '65% 65%', alt: 'Ingredients for functional cacao'},
+  newsletter: {src: './assets/r-cup.jpg', position: '20% 30%', alt: 'A warm cacao ritual'},
+  story: {src: './assets/r-cup.jpg', alt: 'Warm functional cacao, prepared'},
+  founder: {src: './assets/r-story.png', alt: 'AVANCE Functional Cacao product scene'}
+};
+
+function SectionMedia({slot, hero = false}) {
+  const media = AVANCE_MEDIA[slot];
+  if (!media || !media.src) return null;
+  return <figure className={'section-media' + (hero ? ' section-media--hero' : '')} data-media-slot={slot}>
+    <img src={media.src} alt={media.alt || ''} loading={hero ? 'eager' : 'lazy'} decoding="async" style={{objectPosition: media.position || 'center'}} />
+  </figure>;
+}
+
 /* AVANCE Landing UI Kit — shared primitives. Attached to window for cross-file use. */
 
 // ---- "Soft Plus" — the official AVANCE mark: four soft petals in a cross (per packaging) ----
@@ -160,6 +185,7 @@ function Stars({ s = 5, size = 15, color = 'var(--avance-green)' }) {
 function SectionHead({ kicker, title, sub, align = 'center', dark = false, maxW = 640 }) {
   return (
     <div style={{ textAlign: align, maxWidth: align === 'center' ? maxW : 'none', margin: align === 'center' ? '0 auto' : 0 }}>
+      <SectionMedia slot={kicker} />
       <Eyebrow color={dark ? 'var(--sage)' : 'var(--avance-green)'}>{kicker}</Eyebrow>
       <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 500, fontSize: 'clamp(30px, 4.4vw, 46px)', lineHeight: 1.06, letterSpacing: '-0.015em', color: dark ? 'var(--paper)' : 'var(--espresso)', margin: '16px 0 0' }}>{title}</h2>
       {sub && <p style={{ fontFamily: 'var(--font-body)', fontSize: 17, lineHeight: 1.65, color: dark ? 'var(--on-dark-2)' : 'var(--coffee)', margin: '18px auto 0', maxWidth: 560 }}>{sub}</p>}

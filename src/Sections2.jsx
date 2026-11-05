@@ -138,6 +138,7 @@ function NutritionFacts() {
         </div>
         <div>
           <Eyebrow color="var(--sage)">What's inside</Eyebrow>
+          <SectionMedia slot="nutrition" />
           <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 500, fontSize: mobile ? 32 : 42, color: 'var(--paper)', margin: '16px 0 8px', lineHeight: 1.08 }}>Clean ingredients. Nothing to hide.</h2>
           <p style={{ fontFamily: 'var(--font-body)', fontSize: 16, lineHeight: 1.7, color: 'var(--on-dark-2)', margin: '0 0 32px', maxWidth: 480 }}>No gums, no artificial sweeteners, no synthetic fillers. If it's in the pouch, it's there to do a job.</p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
@@ -186,6 +187,7 @@ function Subscribe() {
       <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(60% 60% at 50% 0%, rgba(231,176,110,0.16), transparent 70%)', pointerEvents: 'none' }} />
       <div style={{ position: 'relative', maxWidth: 600, margin: '0 auto', textAlign: 'center' }}>
         <Eyebrow color="var(--sage)">Join the ritual</Eyebrow>
+        <SectionMedia slot="newsletter" />
         <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 500, fontSize: mobile ? 30 : 38, color: 'var(--paper)', margin: '14px 0 8px' }}>10% off your first pouch</h2>
         <p style={{ fontFamily: 'var(--font-body)', fontSize: 15.5, color: 'var(--on-dark-2)', margin: '0 0 28px' }}>Plus early access to new functional blends. No spam — just the good stuff.</p>
         {done ? (

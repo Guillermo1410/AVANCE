@@ -79,7 +79,7 @@ function Founder() {
       <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(46% 50% at 84% 14%, rgba(231,176,110,0.18), transparent 66%)', pointerEvents: 'none' }} />
       <div style={{ position: 'relative', maxWidth: 1120, margin: '0 auto', display: 'grid', gridTemplateColumns: mobile ? '1fr' : '0.92fr 1.08fr', gap: mobile ? 44 : 72, alignItems: 'center' }}>
         <div style={{ borderRadius: 'var(--radius-xl)', overflow: 'hidden', boxShadow: 'var(--shadow-xl)', border: '1px solid rgba(246,239,227,0.1)', order: mobile ? 2 : 1 }}>
-          <img src="./assets/r-story.png" alt="AVANCE Functional Cacao pouch, warm and cinematic" style={{ width: '100%', display: 'block', filter: 'brightness(1.04)' }} />
+          <img src={AVANCE_MEDIA.founder.src} alt={AVANCE_MEDIA.founder.alt} style={{ width: '100%', display: 'block', filter: 'brightness(1.04)' }} />
         </div>
         <div style={{ order: mobile ? 1 : 2 }}>
           <Eyebrow color="var(--sage)">Our story</Eyebrow>
