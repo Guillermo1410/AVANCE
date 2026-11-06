@@ -17,7 +17,7 @@
 <meta name="twitter:description" content="Real cacao, plant protein &amp; postbiotics. Your daily warm ritual.">
 <meta name="twitter:image" content="https://guillermo1410.github.io/AVANCE/assets/avance-escena-taza-neutra.png">
 
-<meta name="avance-release" content="AVANCE-17-TALLER-OPENING">
+<meta name="avance-release" content="AVANCE-19-SLIMMER-STRIPS">
 <style>
 /* ============================================================
    AVANCE — Functional Nutrition
@@ -457,6 +457,28 @@ section:has(.section-media):not(.avance-hero) { padding-top: 0 !important; }
 /* Taller opening photograph, keeping its full-width crop. */
 .avance-hero > .section-media { height: clamp(200px, 24vw, 340px); }
 @media (max-width: 760px) { .avance-hero > .section-media { height: 180px; } }
+
+
+/* Bring the pouch and introduction closer to the opening photograph. */
+.hero-layout.hero-layout-v6 { padding-top: 12px; padding-bottom: 26px; row-gap: 16px; min-height: 0; }
+.hero-layout-v6 .hero-product { align-self: start; margin-top: 0; }
+.hero-layout-v6 .hero-product img { margin-top: 0; }
+.avance-hero > .section-media { height: clamp(220px, 26vw, 370px); }
+@media (max-width: 760px) {
+ .hero-layout.hero-layout-v6 { padding-top: 10px; padding-bottom: 22px; row-gap: 14px; }
+ .avance-hero > .section-media { height: 195px; }
+}
+
+
+/* Balanced, slimmer editorial strips; keep the intro grouped and near the photo. */
+.section-media, .compact-section .section-media, .ritual-section .section-media { height: clamp(105px, 14vw, 200px); }
+.avance-hero > .section-media { height: clamp(125px, 17vw, 240px); }
+.hero-layout-v6 .hero-copy, .hero-layout-v6 .hero-product { align-self: center; }
+@media (max-width: 760px) {
+ .section-media, .compact-section .section-media, .ritual-section .section-media { height: 110px; }
+ .avance-hero > .section-media { height: 120px; }
+ .hero-layout.hero-layout-v6 { padding-top: 8px; }
+}
 
 </style>
 <style>
